@@ -57,6 +57,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X8b-Ii-G9G">
                                 <rect key="frame" x="171.5" y="589" width="31" height="30"/>
                                 <state key="normal" title="开始"/>
+                                <state key="selected" title="暂停"/>
                                 <connections>
                                     <action selector="recordBtn:" destination="Hw9-NT-HUE" eventType="touchUpInside" id="oqw-fe-0Tu"/>
                                 </connections>
@@ -67,10 +68,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uig-TP-dFh">
+                                <rect key="frame" x="171.5" y="551" width="31" height="30"/>
+                                <state key="normal" title="播放"/>
+                                <connections>
+                                    <action selector="playVoiceBtnClicked:" destination="Hw9-NT-HUE" eventType="touchUpInside" id="reI-1c-H7h"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="X8b-Ii-G9G" firstAttribute="top" secondItem="EpH-mR-Hhz" secondAttribute="bottom" constant="8" id="45w-WG-3LO"/>
+                            <constraint firstItem="uig-TP-dFh" firstAttribute="centerX" secondItem="Da4-vG-miW" secondAttribute="centerX" id="8bT-0d-leg"/>
+                            <constraint firstItem="X8b-Ii-G9G" firstAttribute="top" secondItem="uig-TP-dFh" secondAttribute="bottom" constant="8" id="FYp-7u-dZR"/>
                             <constraint firstItem="XKY-vN-45B" firstAttribute="top" secondItem="X8b-Ii-G9G" secondAttribute="bottom" constant="48" id="JAU-YB-Jn8"/>
                             <constraint firstItem="X8b-Ii-G9G" firstAttribute="centerX" secondItem="Da4-vG-miW" secondAttribute="centerX" id="noK-7C-0fC"/>
                             <constraint firstItem="EpH-mR-Hhz" firstAttribute="centerX" secondItem="Da4-vG-miW" secondAttribute="centerX" id="tyb-Zw-IWx"/>
@@ -78,6 +88,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="录音" id="Dhr-mO-fPY"/>
                     <connections>
+                        <outlet property="recorderBtn" destination="X8b-Ii-G9G" id="1pu-i6-Ur7"/>
                         <outlet property="timeLabel" destination="EpH-mR-Hhz" id="F0T-oW-c1o"/>
                     </connections>
                 </viewController>

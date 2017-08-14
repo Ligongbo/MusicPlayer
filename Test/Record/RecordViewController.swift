@@ -12,23 +12,107 @@ typealias sendOutBtnClick = (_ voiceUrl: URL) -> Void
 class RecordViewController: UIViewController {
     @IBOutlet var timeLabel: UILabel!
     
+    @IBOutlet var recorderBtn: UIButton!
     var sendURLAction: sendOutBtnClick?
+    var player: AVAudioPlayer!
+
+    var asset: AVURLAsset!
     var recorder: AVAudioRecorder!
+    
     var timer: Timer?
     //录音存放的路径
     var recordUrl: URL!
+    
+    //---------------------set方法---------------------
+    // MARK: - 语音播放的地址
+    var contentURL: URL!{
+        didSet{
+            if self.player != nil && self.player.isPlaying {
+                stop()
+            }
+            DispatchQueue.global(qos: .default).async(execute: {() -> Void in
+                self.asset = AVURLAsset(url: self.contentURL, options: [AVURLAssetPreferPreciseDurationAndTimingKey: true])
+                let duration: CMTime = self.asset.duration
+                let seconds: Int = Int(CMTimeGetSeconds(duration))
+                if seconds > 60 {
+                    print("A voice audio should't last longer than 60 seconds")
+                    self.contentURL = nil
+                    self.asset = nil
+                    return
+                }
+                do {
+                    let data = try Data(contentsOf: self.contentURL)
+                    self.player = try AVAudioPlayer(data: data)
+                    self.player.delegate = self
+                }catch {
+                    print("出现异常:%@",error)
+                    return
+                }
+                self.player.prepareToPlay()
+                DispatchQueue.main.async(execute: {() -> Void in
+                })
+            })
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        initUI()
     }
     
     @IBAction func recordBtn(_ sender: UIButton) {
-        recordAudio()
+        recorderBtn.isSelected = !recorderBtn.isSelected
+        if recorderBtn.isSelected {
+            recordAudio()
+        }else{
+            endRecord()
+        }
+    }
+    
+    @IBAction func playVoiceBtnClicked(_ sender: UIButton) {
+        if player!.isPlaying {
+            stop()
+        }else {
+            play()
+        }
+    }
+    
+}
+
+/**
+ *  播放
+ */
+extension RecordViewController:AVAudioPlayerDelegate {
+    func pause() {
+        if player != nil &&  player.isPlaying {
+            player.pause()
+        }
+    }
+    
+    func stop() {
+        if player != nil && player.isPlaying {
+            player.stop()
+            player.currentTime = 0
+        }
+    }
+
+    func play() {
+        if !(self.contentURL != nil) {
+            print("没有设置URL")
+            return
+        }
+        
+        if !player.isPlaying{
+            player.play()
+        }
     }
 }
 
+/**
+ * 录音
+ */
 extension RecordViewController {
     fileprivate func initData() {
-        
     }
     
     fileprivate func initUI() {
@@ -107,7 +191,8 @@ extension RecordViewController {
     fileprivate func endPress(){
         let session:AVAudioSession = AVAudioSession.sharedInstance()
         try! session.setCategory(AVAudioSessionCategoryPlayback)
-        self.sendURLAction!(self.recordUrl)
+        let url = URL(fileURLWithPath: self.recordUrl.absoluteString)
+        self.contentURL = url
     }
     
     // MARK: - 改变现实的图片
