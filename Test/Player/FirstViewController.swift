@@ -44,7 +44,6 @@ extension FirstViewController {
     }
     
     fileprivate func initUI() {
-        
         initGlobalView()
         initTableView()
     }

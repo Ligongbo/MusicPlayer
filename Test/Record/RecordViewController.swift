@@ -76,7 +76,6 @@ class RecordViewController: UIViewController {
             play()
         }
     }
-    
 }
 
 /**

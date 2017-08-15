@@ -22,6 +22,10 @@ class ViewController: UIViewController {
         initUI()
     }
     
+    @IBAction func CyclePageBtnClicked(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "showCyclePageViewController", sender: nil)
+    }
+    
     @IBAction func nextButtonClicked(_ sender: UIButton) {
         self.performSegue(withIdentifier: "showFirstViewController", sender: nil)
     }

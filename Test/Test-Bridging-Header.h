@@ -6,3 +6,5 @@
 #import "FloatView.h"
 #import "HStartSelectView.h"
 #import "WMDragView.h"
+#import "TYCyclePagerView.h"
+#import "TYPageControl.h"

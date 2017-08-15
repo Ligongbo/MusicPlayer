@@ -9,6 +9,25 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--展-->
+        <scene sceneID="0hq-3k-k3D">
+            <objects>
+                <viewController id="cQy-ok-dak" customClass="CyclePageViewController" customModule="Test" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vL6-84-4w3"/>
+                        <viewControllerLayoutGuide type="bottom" id="aiB-tB-yoy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yhR-wJ-4Z4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="展" id="PMb-pT-f8i"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CDS-2V-DYl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="161" y="-567"/>
+        </scene>
         <!--Title-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -21,21 +40,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G6e-5N-BNX">
-                                <rect key="frame" x="164" y="318" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G6e-5N-BNX">
+                                <rect key="frame" x="156" y="318" width="62" height="30"/>
+                                <state key="normal" title="播放列表"/>
                                 <connections>
                                     <action selector="nextButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A1s-zm-Jvb"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="laI-zM-h1d">
+                                <rect key="frame" x="156" y="356" width="62" height="30"/>
+                                <state key="normal" title="滚动视图"/>
+                                <connections>
+                                    <action selector="CyclePageBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2BF-zg-lK7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="G6e-5N-BNX" firstAttribute="centerY" secondItem="NaR-6B-Jgz" secondAttribute="centerY" id="GRx-Sm-x6i"/>
+                            <constraint firstItem="G6e-5N-BNX" firstAttribute="centerX" secondItem="NaR-6B-Jgz" secondAttribute="centerX" id="OYH-xv-nJu"/>
+                            <constraint firstItem="laI-zM-h1d" firstAttribute="top" secondItem="G6e-5N-BNX" secondAttribute="bottom" constant="8" id="PIT-pe-BZs"/>
+                            <constraint firstItem="laI-zM-h1d" firstAttribute="centerX" secondItem="NaR-6B-Jgz" secondAttribute="centerX" id="pju-6f-wx8"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="U9q-aY-Zv9"/>
                     <connections>
                         <segue destination="bgL-uk-g92" kind="show" identifier="showFirstViewController" id="Mar-oZ-D7m"/>
                         <segue destination="Hw9-NT-HUE" kind="push" identifier="showRecordViewController" id="xGY-oK-FCG"/>
+                        <segue destination="cQy-ok-dak" kind="push" identifier="showCyclePageViewController" id="rcS-Ej-JkV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
