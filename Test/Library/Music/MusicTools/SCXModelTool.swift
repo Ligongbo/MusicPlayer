@@ -9,7 +9,6 @@
 import UIKit
 
 class SCXModelTool: NSObject {
-    
     class func SCX_getMusicModel() -> (([SCXMusicModel]) ) {
         guard let path = Bundle.main.path(forResource: "Musics.plist", ofType: nil) else {
             return  [SCXMusicModel]()
@@ -25,5 +24,4 @@ class SCXModelTool: NSObject {
         }
         return models
     }
-
 }
