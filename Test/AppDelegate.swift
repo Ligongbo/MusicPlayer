@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
+        //aaaa
         let session = AVAudioSession.sharedInstance()
         do{
             try session.setCategory(AVAudioSessionCategoryPlayback)
